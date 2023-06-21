@@ -16,10 +16,10 @@ import com.example.stock.domain.Stock;
 import com.example.stock.repository.StockRepository;
 
 @SpringBootTest
-class OptimisticStockFacadeTest {
+class NamedLockStockFacadeTest {
 
 	@Autowired
-	private OptimisticStockFacade optimisticStockFacade;
+	private NamedLockStockFacade namedLockStockFacade;
 
 	@Autowired
 	private StockRepository stockRepository;
@@ -44,9 +44,7 @@ class OptimisticStockFacadeTest {
 		for (int i = 0; i < threadCount; i++) {
 			executorService.submit(() -> {
 				try {
-					optimisticStockFacade.decrease(1L, 1L);
-				} catch (InterruptedException e) {
-					throw new RuntimeException(e);
+					namedLockStockFacade.decrease(1L, 1L);
 				} finally {
 					latch.countDown();
 				}

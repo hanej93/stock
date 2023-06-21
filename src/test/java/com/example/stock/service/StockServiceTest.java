@@ -25,13 +25,13 @@ class StockServiceTest {
 	private StockRepository stockRepository;
 
 	@BeforeEach
-	void before() {
+	void insert() {
 		Stock stock = new Stock(1L, 100L);
 		stockRepository.saveAndFlush(stock);
 	}
 
 	@AfterEach
-	void after() {
+	void delete() {
 		stockRepository.deleteAll();
 	}
 
