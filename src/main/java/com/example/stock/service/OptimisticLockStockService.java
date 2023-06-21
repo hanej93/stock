@@ -7,18 +7,17 @@ import com.example.stock.domain.Stock;
 import com.example.stock.repository.StockRepository;
 
 @Service
-public class PessimisticLockService {
+public class OptimisticLockStockService {
 
 	private StockRepository stockRepository;
 
-	public PessimisticLockService(StockRepository stockRepository) {
+	public OptimisticLockStockService(StockRepository stockRepository) {
 		this.stockRepository = stockRepository;
 	}
 
 	@Transactional
 	public void decrease(Long id, Long quantity) {
-		Stock stock = stockRepository.findByIdWithPessimisticLock(id);
-
+		Stock stock = stockRepository.findByIdWithOptimisticLock(id);
 		stock.decrease(quantity);
 
 		stockRepository.saveAndFlush(stock);
