@@ -22,7 +22,6 @@ public class OptimisticStockFacade {
 				Thread.sleep(50);
 			}
 		}
-
 	}
 
 }
