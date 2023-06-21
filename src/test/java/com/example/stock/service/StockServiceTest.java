@@ -21,7 +21,7 @@ import com.example.stock.repository.StockRepository;
 class StockServiceTest {
 
 	@Autowired
-	private StockService stockService;
+	private PessimisticLockService stockService;
 
 	@Autowired
 	private StockRepository stockRepository;
@@ -29,7 +29,6 @@ class StockServiceTest {
 	@BeforeEach
 	void before() {
 		Stock stock = new Stock(1L, 100L);
-
 		stockRepository.saveAndFlush(stock);
 	}
 
